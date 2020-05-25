@@ -1,3 +1,9 @@
+alsa-ucm-conf (1.2.2-1ubuntu1) groovy; urgency=medium
+
+  * Fix the audio crash on the machine without Intel HDMI audio (lp: #1874698)
+
+ -- Hui Wang <hui.wang@canonical.com>  Mon, 25 May 2020 14:36:48 +0800
+
 alsa-ucm-conf (1.2.2-1) unstable; urgency=medium
 
   * New upstream release.
