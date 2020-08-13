@@ -1,0 +1,46 @@
+From 36a4725d4ed7210259bbe7ab47f4175ac8ad10db Mon Sep 17 00:00:00 2001
+From: Hans de Goede <hdegoede@redhat.com>
+Date: Sun, 28 Jun 2020 19:44:17 +0200
+Subject: [PATCH 12/16] Fix invalid "Regex" Type in various Condition blocks
+
+Regex is not a valid Condition type, using it leads to errors like these:
+
+ALSA lib ucm_cond.c:300:(if_eval) unknown If.Condition.Type
+ALSA lib main.c:983:(snd_use_case_mgr_open) error: failed to import cht-bsw-rt5672 use case configuration -22
+alsaucm: error failed to open sound card cht-bsw-rt5672: Invalid argument
+
+Replacing it with "RegexMatch" fixes this.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+Signed-off-by: Jaroslav Kysela <perex@perex.cz>
+(backported from commit a396908d25976c030e7a6a56bd5be0738c11d2ee)
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+ ucm2/sof-soundwire/sof-soundwire.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ucm2/sof-soundwire/sof-soundwire.conf b/ucm2/sof-soundwire/sof-soundwire.conf
+index fe43d5f..2ba44be 100644
+--- a/ucm2/sof-soundwire/sof-soundwire.conf
++++ b/ucm2/sof-soundwire/sof-soundwire.conf
+@@ -38,7 +38,7 @@ DefineRegex {
+ 
+ If.hs_init {
+ 	Condition {
+-		Type Regex
++		Type RegexMatch
+ 		Regex "(rt5682|rt700|rt711)"
+ 		String "${var:HeadsetCodec1}"
+ 	}
+@@ -47,7 +47,7 @@ If.hs_init {
+ 
+ If.mic_init {
+ 	Condition {
+-		Type Regex
++		Type RegexMatch
+ 		Regex "(rt715)"
+ 		String "${var:MicCodec1}"
+ 	}
+-- 
+2.17.1
+

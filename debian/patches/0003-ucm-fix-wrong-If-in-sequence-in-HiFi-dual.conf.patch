@@ -1,0 +1,47 @@
+From 9199204e37b32a00cdc314615f23a283828a3a61 Mon Sep 17 00:00:00 2001
+From: Jaroslav Kysela <perex@perex.cz>
+Date: Mon, 25 May 2020 20:57:43 +0200
+Subject: [PATCH 03/14] ucm: fix wrong If in sequence in HiFi-dual.conf
+
+Signed-off-by: Jaroslav Kysela <perex@perex.cz>
+(cherry picked from commit 63ae90d6366b9a787baf9af3ebed4207679b0789)
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+ ucm2/HDA-Intel/HiFi-dual.conf | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/ucm2/HDA-Intel/HiFi-dual.conf b/ucm2/HDA-Intel/HiFi-dual.conf
+index 174fef4..e0e814f 100644
+--- a/ucm2/HDA-Intel/HiFi-dual.conf
++++ b/ucm2/HDA-Intel/HiFi-dual.conf
+@@ -74,16 +74,19 @@ SectionDevice."Line2" {
+ 
+ 	EnableSequence [
+ 		cset "name='Input Source' Line"
+-		If.0 {
+-			Condition {
+-				Type ControlExists
+-				Control "name='Line Boost Volume'"
+-			}
+-			True {
++	]
++
++	If.0 {
++		Condition {
++			Type ControlExists
++			Control "name='Line Boost Volume'"
++		}
++		True {
++			EnableSequence [
+ 				cset "name='Line Boost Volume' 3"
+-			}
++			]
+ 		}
+-	]
++	}
+ }
+ 
+ SectionDevice."Mic2" {
+-- 
+2.17.1
+

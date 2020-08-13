@@ -1,0 +1,58 @@
+From b21b89fb37c6bb64a392d86d4f1ff28277077087 Mon Sep 17 00:00:00 2001
+From: Hui Wang <hui.wang@canonical.com>
+Date: Thu, 23 Jul 2020 15:21:05 +0800
+Subject: [PATCH 15/15] HDA-Intel: only bind the acp dmic to the soundcard with
+ analog codec
+
+On the Lenovo amd renoir laptops, there are 2 soundcards, one is the
+intel soundcard with analog codec, the other is the nvidia soundcard
+with only hdmi audio codec. We expect the the dmic of acp driver to
+bind to the soundcard with analog codec instead of both 2 soundcards.
+
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+ ucm2/HDA-Intel/HDA-Intel.conf | 8 ++++++++
+ ucm2/HDA-Intel/HiFi.conf      | 8 +-------
+ 2 files changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/ucm2/HDA-Intel/HDA-Intel.conf b/ucm2/HDA-Intel/HDA-Intel.conf
+index 109eea6..e288ae4 100644
+--- a/ucm2/HDA-Intel/HDA-Intel.conf
++++ b/ucm2/HDA-Intel/HDA-Intel.conf
+@@ -12,6 +12,14 @@ If.acp {
+ 	False.Define.Use y
+ }
+ 
++If.analog {
++	Condition {
++		Type ControlExists
++		Control "name='Master Playback Switch'"
++	}
++	False.Define.Use ""
++}
++
+ If.use {
+ 	Condition {
+ 		Type String
+diff --git a/ucm2/HDA-Intel/HiFi.conf b/ucm2/HDA-Intel/HiFi.conf
+index 2d18c9e..7d4acb9 100644
+--- a/ucm2/HDA-Intel/HiFi.conf
++++ b/ucm2/HDA-Intel/HiFi.conf
+@@ -4,13 +4,7 @@ SectionVerb {
+ 	Value.TQ "HiFi"
+ }
+ 
+-If.analog {
+-	Condition {
+-		Type ControlExists
+-		Control "name='Master Playback Switch'"
+-	}
+-	True.Include.analog.File "/HDA-Intel/HiFi-analog.conf"
+-}
++Include.analog.File "/HDA-Intel/HiFi-analog.conf"
+ 
+ If.hdmi {
+ 	Condition { Type String Empty "" }
+-- 
+2.17.1
+

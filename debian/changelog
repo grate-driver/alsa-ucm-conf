@@ -1,3 +1,24 @@
+alsa-ucm-conf (1.2.2-1ubuntu2) groovy; urgency=medium
+
+  * d/p/0003-ucm-fix-wrong-If-in-sequence-in-HiFi-dual.conf.patch
+  * d/p/0004-ucm2-add-initial-ucm.conf-for-the-latest-alsa-lib.patch
+  * d/p/0005-sof-hda-dsp-don-t-fail-if-Auto-Mute-control-is-not-p.patch
+  * d/p/0006-ucm.conf-add-support-for-the-kernel-module-name-tree.patch
+  * d/p/0007-sof-hda-dsp-make-Headphone-Playback-Switch-condition.patch
+  * d/p/0008-sof-soundwire-initial-UCM2-version.patch
+  * d/p/0009-sof-soundwire-cleanups-recommended-by-the-ucm-valida.patch
+  * d/p/0010-sof-soundwire-rewrite-for-syntax-3.patch
+  * d/p/0011-HDA-Intel-add-support-for-AMD-acp-microphone-devices.patch
+  * d/p/0012-hda-hdmi-add-HDMI4-HDMI5-HDMI6-devices.patch
+  * d/p/0013-amd-renoir-acp-use-the-machine-driver-s-name-for-top.patch
+  * d/p/0014-amd-renoir-acp-add-syntax-in-the-Linked.patch
+  * d/p/0015-HDA-Intel-only-bind-the-acp-dmic-to-the-soundcard-wi.patch
+  * d/p/0016-Fix-invalid-Regex-Type-in-various-Condition-blocks.patch
+    Make digital mic on the AMD Renoir machines work under gnome desktop
+    (LP: #1889217)
+
+ -- Hui Wang <hui.wang@canonical.com>  Thu, 13 Aug 2020 16:18:58 +0200
+
 alsa-ucm-conf (1.2.2-1ubuntu1) groovy; urgency=medium
 
   * Fix the audio crash on the machine without Intel HDMI audio (lp: #1874698)

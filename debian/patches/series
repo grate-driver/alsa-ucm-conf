@@ -1,3 +1,17 @@
 0001-sof-hda-dsp-Support-systems-without-integrated-graph.patch
 0002-sof-hda-dsp-change-Headphones2-to-Mic2.patch
+0003-ucm-fix-wrong-If-in-sequence-in-HiFi-dual.conf.patch
+0004-ucm2-add-initial-ucm.conf-for-the-latest-alsa-lib.patch
+0005-sof-hda-dsp-don-t-fail-if-Auto-Mute-control-is-not-p.patch
+0006-ucm.conf-add-support-for-the-kernel-module-name-tree.patch
+0007-sof-hda-dsp-make-Headphone-Playback-Switch-condition.patch
+0008-sof-soundwire-initial-UCM2-version.patch
+0009-sof-soundwire-cleanups-recommended-by-the-ucm-valida.patch
+0010-sof-soundwire-rewrite-for-syntax-3.patch
+0011-HDA-Intel-add-support-for-AMD-acp-microphone-devices.patch
+0012-hda-hdmi-add-HDMI4-HDMI5-HDMI6-devices.patch
+0013-amd-renoir-acp-use-the-machine-driver-s-name-for-top.patch
+0014-amd-renoir-acp-add-syntax-in-the-Linked.patch
+0015-HDA-Intel-only-bind-the-acp-dmic-to-the-soundcard-wi.patch
+0016-Fix-invalid-Regex-Type-in-various-Condition-blocks.patch
 
