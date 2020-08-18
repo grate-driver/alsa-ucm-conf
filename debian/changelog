@@ -1,3 +1,11 @@
+alsa-ucm-conf (1.2.2-1ubuntu3) groovy; urgency=medium
+
+  * d/p/0001-Add-support-for-Lenovo-ThinkStation-P620-Main-Audio.patch
+    Add proper stream and jack assignment to Lenovo ThinkStation P620
+    (LP: #1891461)
+
+ -- Kai-Heng Feng <kai.heng.feng@canonical.com>  Tue, 18 Aug 2020 17:39:15 +0800
+
 alsa-ucm-conf (1.2.2-1ubuntu2) groovy; urgency=medium
 
   * d/p/0003-ucm-fix-wrong-If-in-sequence-in-HiFi-dual.conf.patch

@@ -15,3 +15,5 @@
 0015-HDA-Intel-only-bind-the-acp-dmic-to-the-soundcard-wi.patch
 0016-Fix-invalid-Regex-Type-in-various-Condition-blocks.patch
 
+0001-Add-support-for-Lenovo-ThinkStation-P620-Main-Audio.patch
+

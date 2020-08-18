@@ -1,0 +1,79 @@
+From fc489d2a140000eb2b04181dc6c97201376accfc Mon Sep 17 00:00:00 2001
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Date: Thu, 6 Aug 2020 16:54:11 +0800
+Subject: [PATCH] Add support for Lenovo ThinkStation P620 Main Audio
+
+This add support for internal speaker and front headset.
+
+We need two separate configs to let PulseAudio understands they are two
+different profiles, so the headset's port availability won't affect
+speaker's profile availability.
+---
+ ...Lenovo-ThinkStation-P620-Main-Headset.conf | 19 +++++++++++++++++++
+ ...Lenovo-ThinkStation-P620-Main-Speaker.conf |  9 +++++++++
+ .../Lenovo-ThinkStation-P620-Main.conf        | 11 +++++++++++
+ 3 files changed, 39 insertions(+)
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Speaker.conf
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main.conf
+
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
+new file mode 100644
+index 0000000..5362c5e
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
+@@ -0,0 +1,19 @@
++SectionDevice."Headphones" {
++	Comment "Headphones"
++
++	Value {
++		PlaybackPriority 200
++		PlaybackPCM "hw:${CardId},1"
++		JackControl "Headphone - Output Jack"
++	}
++}
++
++SectionDevice."Microphone" {
++	Comment "Microphone"
++
++	Value {
++		CapturePriority 200
++		CapturePCM "hw:${CardId}"
++		JackControl "Mic - Input Jack"
++	}
++}
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Speaker.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Speaker.conf
+new file mode 100644
+index 0000000..a83a947
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Speaker.conf
+@@ -0,0 +1,9 @@
++SectionDevice."Speaker" {
++	Comment "Speaker"
++
++	Value {
++		PlaybackPriority 100
++		PlaybackPCM "hw:${CardId}"
++		JackControl "Speaker - Output Jack"
++	}
++}
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main.conf
+new file mode 100644
+index 0000000..ad1bd91
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main.conf
+@@ -0,0 +1,11 @@
++Syntax 2
++Comment "USB-audio on Lenovo ThinkStation P620 Main Audio"
++SectionUseCase."Speaker" {
++	Comment "Internal Speaker"
++	File "Lenovo-ThinkStation-P620-Main-Speaker.conf"
++}
++
++SectionUseCase."Headset" {
++	Comment "Front Headset"
++	File "Lenovo-ThinkStation-P620-Main-Headset.conf"
++}
+-- 
+2.17.1
+
