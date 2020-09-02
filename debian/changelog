@@ -1,3 +1,12 @@
+alsa-ucm-conf (1.2.2-1ubuntu4) groovy; urgency=medium
+
+  * d/p/0017-USB-Audio-Dell-WD15-Dock-make-input-and-output-volum.patch
+    Make the volume adjustable for USB audio on the Dell WD15/WD19 dock,
+    otherwise even we set the input volume to max, we can't record the sound
+    with some specific headset-mic (LP: #1893004)
+
+ -- Hui Wang <hui.wang@canonical.com>  Wed, 02 Sep 2020 01:00:39 +0000
+
 alsa-ucm-conf (1.2.2-1ubuntu3) groovy; urgency=medium
 
   * d/p/0001-Add-support-for-Lenovo-ThinkStation-P620-Main-Audio.patch
