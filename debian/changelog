@@ -1,3 +1,11 @@
+alsa-ucm-conf (1.2.2-1ubuntu5) groovy; urgency=medium
+
+  * d/p/0001-ucm2-USB-Audio-Add-more-support-to-Lenovo-ThinkStati.patch
+    Add MixerElem and proper PCM assignment to Lenovo P620 Main and Rear
+    audio, respectively (LP: #1895669)
+
+ -- Kai-Heng Feng <kai.heng.feng@canonical.com>  Tue, 15 Sep 2020 21:19:16 +0800
+
 alsa-ucm-conf (1.2.2-1ubuntu4) groovy; urgency=medium
 
   * d/p/0017-USB-Audio-Dell-WD15-Dock-make-input-and-output-volum.patch

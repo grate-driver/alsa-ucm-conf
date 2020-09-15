@@ -1,0 +1,103 @@
+From 526f549eb9ba24dd74bdf65d701f4c5f63eb4494 Mon Sep 17 00:00:00 2001
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Date: Tue, 15 Sep 2020 20:22:22 +0800
+Subject: [PATCH] ucm2: USB-Audio: Add more support to Lenovo ThinkStation P620
+
+Add MixerElem and proper PCM assignment to Lenovo P620 Main and Rear
+audio, respectively.
+
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+---
+ .../Lenovo-ThinkStation-P620-Main-Headset.conf   |  1 +
+ .../Lenovo-ThinkStation-P620-Rear-Line.conf      | 10 ++++++++++
+ .../Lenovo-ThinkStation-P620-Rear-Mic.conf       | 10 ++++++++++
+ .../Lenovo-ThinkStation-P620-Rear-Speaker.conf   |  8 ++++++++
+ .../USB-Audio/Lenovo-ThinkStation-P620-Rear.conf | 16 ++++++++++++++++
+ 5 files changed, 45 insertions(+)
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Line.conf
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Mic.conf
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Speaker.conf
+ create mode 100644 ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear.conf
+
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
+index 5362c5e..f0f01ad 100644
+--- a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Main-Headset.conf
+@@ -15,5 +15,6 @@ SectionDevice."Microphone" {
+ 		CapturePriority 200
+ 		CapturePCM "hw:${CardId}"
+ 		JackControl "Mic - Input Jack"
++		CaptureMixerElem "Mic"
+ 	}
+ }
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Line.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Line.conf
+new file mode 100644
+index 0000000..f372989
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Line.conf
+@@ -0,0 +1,10 @@
++SectionDevice."Line" {
++	Comment "Line In"
++
++	Value {
++		CapturePriority 100
++		CapturePCM "hw:${CardId}"
++		JackControl "Line - Input Jack"
++		CaptureMixerElem "Line"
++	}
++}
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Mic.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Mic.conf
+new file mode 100644
+index 0000000..44a79d0
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Mic.conf
+@@ -0,0 +1,10 @@
++SectionDevice."Mic" {
++	Comment "Microphone"
++
++	Value {
++		CapturePriority 200
++		CapturePCM "hw:${CardId},1"
++		JackControl "Mic - Input Jack"
++		CaptureMixerElem "Mic"
++	}
++}
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Speaker.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Speaker.conf
+new file mode 100644
+index 0000000..edebbd3
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear-Speaker.conf
+@@ -0,0 +1,8 @@
++SectionDevice."Speaker" {
++	Comment "Speaker"
++
++	Value {
++		PlaybackPCM "hw:${CardId}"
++		JackControl "Speaker - Output Jack"
++	}
++}
+diff --git a/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear.conf b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear.conf
+new file mode 100644
+index 0000000..42e436b
+--- /dev/null
++++ b/ucm2/USB-Audio/Lenovo-ThinkStation-P620-Rear.conf
+@@ -0,0 +1,16 @@
++Syntax 2
++Comment "USB-audio on Lenovo ThinkStation P620 Rear Audio"
++SectionUseCase."Line" {
++	Comment "Line In"
++	File "Lenovo-ThinkStation-P620-Rear-Line.conf"
++}
++
++SectionUseCase."Speaker" {
++	Comment "Speaker"
++	File "Lenovo-ThinkStation-P620-Rear-Speaker.conf"
++}
++
++SectionUseCase."Mic" {
++	Comment "Microphone"
++	File "Lenovo-ThinkStation-P620-Rear-Mic.conf"
++}
+-- 
+2.17.1
+
