@@ -1,3 +1,10 @@
+alsa-ucm-conf (1.2.4-2ubuntu1) hirsute; urgency=medium
+
+  * d/p/0001-rt715-init-setup-ADC07-to-a-proper-volume.patch
+    Correct rt715 init volume setting. (LP: #1908677)
+
+ -- Kai-Chuan Hsieh <kaichuan.hsieh@canonical.com>  Thu, 18 Mar 2021 11:10:27 +0100
+
 alsa-ucm-conf (1.2.4-2) unstable; urgency=medium
 
   * Have alsa-ucm-conf depend on latest libasound2, as this is needed for
